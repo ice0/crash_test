@@ -27,11 +27,21 @@ jobs:
 
       - name: test enabling cores
         run: |
-          ulimit -c               # should output 0 if disabled
           ulimit -c unlimited
           ulimit -c               # should output 'unlimited' now
+          #echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+          sudo apt-get update && sudo apt-get install systemd-coredump gdb
+          cat /proc/sys/kernel/core_pattern
         
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          ulimit -c unlimited
+          g++ crash.c -g -o app
+          ./app
           echo test, and deploy your project.
+
+      - name: Collect core dump
+        if: runner.os == 'Linux' && failure()
+        run: |
+          sudo coredumpctl debug --debugger-arguments="-batch -ex 'thread apply all bt full'"
