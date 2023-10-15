@@ -30,7 +30,7 @@ jobs:
           ulimit -c unlimited
           ulimit -c               # should output 'unlimited' now
           #echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
-          sudo apt-get install coredumpctl
+          sudo apt-get install systemd-coredump
           cat /proc/sys/kernel/core_pattern
         
       # Runs a set of commands using the runners shell
@@ -45,6 +45,6 @@ jobs:
       - name: Collect core dump
         if: failure()
         run: |
-          ls -la /tmp/core*
+          #ls -la /tmp/core*
           coredumpctl debug
           echo test, and deploy your project.
