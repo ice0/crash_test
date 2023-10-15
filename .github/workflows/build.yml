@@ -37,10 +37,11 @@ jobs:
         run: |
           g++ crash.c -o app
           ./app
+          ls -la /tmp/
           echo test, and deploy your project.
 
       - name: Collect core dump
         if: failure()
         run: |
-          ls -la /tmp/core*
+          ls -la /tmp/
           echo test, and deploy your project.
