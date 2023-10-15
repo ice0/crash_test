@@ -38,7 +38,7 @@ jobs:
         run: |
           ulimit -c unlimited
           g++ crash.c -g -o app
-          ./app
+          #./app
           echo test, and deploy your project.
 
       - name: Collect core dump
