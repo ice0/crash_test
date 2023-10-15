@@ -37,7 +37,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           ulimit -c unlimited
-          g++ crash.c -o app
+          g++ crash.c -g -o app
           ./app
           echo test, and deploy your project.
 
