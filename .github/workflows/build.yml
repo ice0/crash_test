@@ -29,7 +29,8 @@ jobs:
         run: |
           ulimit -c unlimited
           ulimit -c               # should output 'unlimited' now
-          echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+          #echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+          sudo apt-get install coredumpctl
           cat /proc/sys/kernel/core_pattern
         
       # Runs a set of commands using the runners shell
