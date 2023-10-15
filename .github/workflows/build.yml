@@ -44,4 +44,4 @@ jobs:
       - name: Collect core dump
         if: failure()
         run: |
-          coredumpctl debug
+          sudo coredumpctl debug --debugger-arguments="-batch -ex 'thread apply all bt full'"
