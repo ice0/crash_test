@@ -44,5 +44,6 @@ jobs:
       - name: Collect core dump
         if: failure()
         run: |
-          ls -la /tmp/
+          ls -la /tmp/core*
+          coredumpctl debug
           echo test, and deploy your project.
