@@ -38,7 +38,7 @@ jobs:
           g++ crash.c -o app
           ./app
           ls -la /tmp/
-          echo test, and deploy your project.
+          echo test, and deploy your project. something.
 
       - name: Collect core dump
         if: failure()
