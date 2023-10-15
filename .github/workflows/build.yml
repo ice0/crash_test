@@ -42,6 +42,6 @@ jobs:
           echo test, and deploy your project.
 
       - name: Collect core dump
-        if: failure()
+        if: runner.os == 'Linux' && failure()
         run: |
           sudo coredumpctl debug --debugger-arguments="-batch -ex 'thread apply all bt full'"
